@@ -41,12 +41,7 @@ public:
                 temp.push_back(node->val);
                 
                 for(int i =0; i< node->children.size();i++)
-                {
-                    if(node->children[i])
-                    {
-                        q.push(node->children[i]);
-                    }
-                }
+                    q.push(node->children[i]);
             }
             
             ans.push_back(temp);

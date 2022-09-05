@@ -18,41 +18,27 @@ public:
         vector<int> inorder;
         if (root == NULL)
             return inorder;
-
-        while (root != NULL) {
-
-            if (root->left == NULL)
-            {
+        
+        stack<TreeNode *> s;
+        
+        while(1){
+            
+            if(root!= NULL){
+                s.push(root);
+                root = root->left;
+            }
+            else {
+                
+                if(s.empty()) break;
+                
+                root = s.top();
+                s.pop();
                 inorder.push_back(root->val);
                 root = root->right;
             }
-
-            else
-            {
-
-                TreeNode *prev = root->left;
-
-                while (prev->right && prev->right != root)
-                {
-                    prev = prev->right;
-                }
-
-                if (prev->right == NULL)
-                {
-                    prev->right = root;
-                    root = root->left;
-                }
-
-                else if (prev->right != NULL)
-                {
-                    prev->right = NULL;
-                    inorder.push_back(root->val);
-                    root = root->right;
-                    
-                }
-            }
-            
         }
+
+
 
         return inorder;
     }

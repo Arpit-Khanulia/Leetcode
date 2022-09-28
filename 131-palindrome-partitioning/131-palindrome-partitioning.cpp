@@ -23,7 +23,6 @@ public:
             if(ispallindrome(s,index,i))
             {
                 ds.push_back(s.substr(index,i-index+1));
-            
                 find(i+1,ds,ans,s);
                 ds.pop_back();            
                 

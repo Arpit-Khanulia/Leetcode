@@ -1,29 +1,39 @@
 class Solution {
 public:
-    
-    int find(vector<int>nums, int target, int n,vector<vector<int>>&dp){
-        
-        if(n == 0) return 0;
-        if(target == 0) return 1;
-        
-        if(dp[n][target] != -1) return dp[n][target];
-        
-        if(nums[n-1] <= target) return dp[n][target] =  find(nums,target - nums[n-1], n-1,dp) || find(nums,target,n-1,dp);
-        return dp[n][target] =  find(nums, target, n-1,dp);
-    }
     bool canPartition(vector<int>& nums) {
         
-        
         int sum =0;
+        for(int i : nums)
+            sum = sum +i;
         
-        for(int i =0;i<nums.size();i++)
-            sum = sum + nums[i];
-                             
-        vector<vector<int>>dp(nums.size()+1,vector<int>(sum/2 +1,-1));
+        if(sum %2 != 0)
+            return 0;
+        
+        vector<vector<int>>dp(nums.size()+1,vector<int>(sum/2+1));
+        
+        
+        for(int i=0;i<nums.size()+1;i++)
+            for(int j =0;j<sum/2+1;j++)
+            {
+                if(i ==0) dp[i][j] =0;
+                if(j ==0) dp[i][j] =1;
+            }
+        
+        
 
+        for(int i=1;i<nums.size()+1;i++)
+            for(int j =1;j<sum/2+1;j++)
+            {
+                
+                if(nums[i-1] <= j)
+                    dp[i][j] = dp[i-1][j-nums[i-1]] || dp[i-1][j];
+                else dp[i][j] = dp[i-1][j];
+
+            }
         
-        if(sum %2 !=0) return 0;
-        else return find(nums,sum/2,nums.size(),dp);
+        return dp[nums.size()][sum/2];
+        
+        
         
         
     }

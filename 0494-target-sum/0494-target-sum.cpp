@@ -10,7 +10,7 @@ public:
         
         target = (sum - target)/2;
         
-        vector<vector<int>>dp(nums.size()+1,vector<int>(target+1,-1));
+        vector<vector<int>>dp(nums.size()+1,vector<int>(sum + target+1,-1));
         return find(nums.size(), nums,target,dp);
         
     }

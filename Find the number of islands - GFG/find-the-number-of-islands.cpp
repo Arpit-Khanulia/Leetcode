@@ -7,74 +7,75 @@ class Solution {
   public:
     // Function to find the number of islands.
     
-    void bfs(int n, int m, vector<vector<char>>&grid,vector<vector<int>>&vi){
+    // void bfs(int n, int m, vector<vector<char>>&grid,vector<vector<int>>&vi){
 
-        vi[n][m] =1;
+    //     vi[n][m] =1;
 
+    //     int row = grid.size();
+    //     int col = grid[0].size();
+
+    //     queue<pair<int,int>>q;
+    //     q.push({n,m});
+
+        // while(!q.empty()){
+
+        //     int temp1 = q.front().first;
+        //     int temp2 = q.front().second;
+        //     q.pop();
+            
+        //     for(int i = -1; i<=1; i++)
+        //     for(int j = -1; j<=1; j++)
+        //     {
+        //         int nrow = temp1 +i;
+        //         int mcol = temp2 +j;
+
+                // if(nrow>=0 && nrow < row && mcol>=0 && mcol<col 
+                // && vi[nrow][mcol] ==0 && grid[nrow][mcol] == '1')
+                // {
+                //     vi[nrow][mcol] =1;
+                //     q.push({nrow,mcol});
+                // }
+        //     }
+
+        // }
+
+
+    // }
+    
+    int bfs(int k, int l, vector<vector<char>>&grid, vector<vector<int>>&vi){
+        
+        vi[k][l] =1;
         int row = grid.size();
         int col = grid[0].size();
-
+        
         queue<pair<int,int>>q;
-        q.push({n,m});
-
-        while(!q.empty()){
-
+        q.push({k,l});
+        
+        while(!q.empty())
+        {
+            
             int temp1 = q.front().first;
             int temp2 = q.front().second;
             q.pop();
             
-            for(int i = -1; i<=1; i++)
-            for(int j = -1; j<=1; j++)
+            for(int i =-1;i<=1;i++)
+            for(int j =-1;j<=1;j++)
             {
-                int nrow = temp1 +i;
+                int nrow = temp1 + i;
                 int mcol = temp2 +j;
-
+                
                 if(nrow>=0 && nrow < row && mcol>=0 && mcol<col 
                 && vi[nrow][mcol] ==0 && grid[nrow][mcol] == '1')
                 {
                     vi[nrow][mcol] =1;
                     q.push({nrow,mcol});
                 }
+                
             }
-
+            
         }
-
-
+        
     }
-    
-    // int bfs(int i, int j, vector<vector<char>>&grid, vector<vector<int>>&vi){
-        
-    //     vi[i][j] =1;
-    //     int n = grid.size();
-    //     int m = grid[0].size();
-        
-    //     queue<pair<int,int>>q;
-    //     q.push({i,j});
-        
-    //     while(!q.empty());
-    //     {
-            
-    //         pair<int,int>temp = q.front();
-    //         q.pop();
-            
-    //         for(int i =-1;i<=1;i++)
-    //         for(int j =-1;j<=1;j++)
-    //         {
-    //             int row = temp.first + i;
-    //             int col = temp.second +j;
-                
-    //             if(row>=0 && row<n && col>=0 && col<m && grid[row][col] =='1'&& !vi[row][col])
-    //             {
-    //                 vi[row][col] =1;
-    //                 q.push({row,col});
-    //             }
-                
-                
-    //         }
-            
-    //     }
-        
-    // }
     
     
     //888888888888888888888888888888888888888888888884

@@ -7,31 +7,48 @@ class Solution {
   public:
     // Function to detect cycle in an undirected graph.
     
-    int dfs(int node , int parent, vector<int>adj[],vector<int>&vi){
+   int find(int node, vector<int>adj[],vector<int>&vi){
         
+        queue<pair<int,int>>q;
+        q.push({node,-1});
         vi[node] =1;
         
-        for(int i : adj[node]){
+        while(!q.empty()){
             
-            if(!vi[i])
+            int temp = q.front().first;
+            int parent = q.front().second;
+            
+            q.pop();
+            
+            for(int i: adj[temp])
             {
-                if(dfs(i,node,adj,vi)) return 1;
+                if(!vi[i])
+                {
+                    q.push({i,temp});
+                    vi[i] =1;
+                    
+                }
+                else if(i != parent)
+                return 1;
             }
-            else if(parent != i) return 1;
-        }
         
-        return false;
+        }
+        return 0;
+        
+        
+        
     }
     bool isCycle(int V, vector<int> adj[]) {
-        // Code here
-        
-        
+        // code here
         vector<int>vi(V);
         
-        for(int i=0; i<V;i++)
-        if(!vi[i]) if(dfs(i,-1,adj,vi)) return 1;
+        for(int i =0;i<V;i++) {
+            if(!vi[i]) {
+                if(find(i, adj, vi)) return true; 
+            }
+        }
+        return false; 
         
-        return 0;
     }
 };
 

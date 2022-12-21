@@ -7,34 +7,36 @@ class Solution {
   public:
     // Function to detect cycle in a directed graph.
     
-    int dfs(vector<int>adj[],vector<int>&dfsvi,vector<int>&vi,int node){
-        
-        vi[node] =1;
-        dfsvi[node] =1;
-        
-        
-        for(int &i: adj[node]){
-            
-            if(vi[i] ==0){
-                
-                if(dfs(adj,dfsvi,vi,i) == true) return true;
-            }
-            else if(dfsvi[i] == 1) return true;
-        }
-        
-        dfsvi[node] =0;
-        return false;
-        
-    }
     bool isCyclic(int V, vector<int> adj[]) {
         // code here
         
-        vector<int>vi(V);
-        vector<int>dfsvi(V);
-        
-        for(int i=0; i<V;i++)
-        if(vi[i] == 0) if(dfs(adj,dfsvi,vi,i) == true) return true;
-        return false;
+	    vector<int>id(V);
+	    for(int i=0; i<V;i++)
+	    for(int j:adj[i])
+	    id[j]++;
+	    
+	    queue<int>q;
+	    vector<int>ans;
+	    
+	    for(int i=0;i<V;i++)
+	    if(id[i]== 0) q.push(i);
+	    
+	    while(!q.empty()){
+	        
+	        int node = q.front();
+	        q.pop();
+	        
+	        ans.push_back(node);
+	        
+	        for(int i: adj[node])
+	        {
+	           id[i]--;
+	           if(id[i] == 0) q.push(i);
+	        }
+	    }
+	    
+	    if(ans.size() == V) return false;
+	    return true;
     }
 };
 

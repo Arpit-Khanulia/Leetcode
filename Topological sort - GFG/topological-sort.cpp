@@ -13,27 +13,26 @@ class Solution
 	    
 	    vector<int>id(V);
 	    for(int i=0; i<V;i++)
-	    for(int j : adj[i])
+	    for(int j:adj[i])
 	    id[j]++;
 	    
 	    queue<int>q;
 	    vector<int>ans;
 	    
-	    for(int i =0; i<V;i++)
-	    if(id[i]==0) q.push(i);
+	    for(int i=0;i<V;i++)
+	    if(id[i]== 0) q.push(i);
 	    
 	    while(!q.empty()){
 	        
 	        int node = q.front();
-	        
 	        q.pop();
 	        
 	        ans.push_back(node);
 	        
-	        for(int i:adj[node])
+	        for(int i: adj[node])
 	        {
-	            id[i]--;
-	            if(id[i] ==0) q.push(i);
+	           id[i]--;
+	           if(id[i] == 0) q.push(i);
 	        }
 	    }
 	    

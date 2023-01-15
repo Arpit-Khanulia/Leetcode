@@ -1,30 +1,56 @@
 class Solution {
 public:
-    int par[26];
     
-    int find(int x){
-        if(par[x]==-1) return x;
-        return par[x]=find(par[x]);
-    }
-    
-    void Union(int x, int y) {
-        x = find(x);
-        y = find(y);
+    int find(char a,string &parent){
         
-        if (x != y) 
-            par[max(x, y)] = min(x, y); 
+        if(parent[a - 'a'] == a) return a;
+        
+        else
+        {
+            char b =find(parent[a -'a'],parent);
+            parent[a - 'a'] = b;
+            return b;
+            
+        }
+            
+         
     }
-	
+        
+    void unionn(char a, char b,string & parent){
+        
+        char arep = find(a,parent);
+        char brep = find(b,parent);
+        
+        if(arep == brep) return ;
+        
+        if(brep<arep) parent[arep - 'a'] = brep;
+        
+        else if(arep<brep) parent[brep - 'a'] = arep;
+            
+       
+    }
     string smallestEquivalentString(string s1, string s2, string baseStr) {
         
-        memset(par, -1, sizeof(par));
+        string parent;
         
-        for (auto i = 0; i < s1.size(); ++i) 
-            Union(s1[i] - 'a', s2[i] - 'a');
+        for(int i =0; i<26; i++)
+            parent.push_back('a' +i);
+               
+        for(int i =0;i<s1.size();i++)
+        {
+            unionn(s1[i],s2[i],parent);
+        }
         
-        for(auto i=0;i<baseStr.size();i++) 
-            baseStr[i]=find(baseStr[i]-'a')+'a';
-
-        return baseStr;
+        
+        string ans;
+        
+        for(int i =0; i<baseStr.size();i++){
+            
+            char a = find(baseStr[i],parent);
+            ans.push_back(a);
+        }
+        
+        return ans;
+        
     }
 };

@@ -5,18 +5,19 @@ public:
         
         int i= 0; 
         int j =nums.size()-1;
+        int mid =0;
         
         
         
         while(i<=j){
             
-            if(target < nums[i])return i;
-            int mid = (i + j)/2;
+            // if(target < nums[i])return i;
+            mid = (i + j)/2;
             
             
             if(target == nums[mid]) return mid;
             
-            if(i == j && target > nums[i]) return i+1;
+            // if(i == j && target > nums[i]) return i+1;
             
             
             if(target < nums[mid]) j = mid-1;
@@ -24,7 +25,8 @@ public:
             if(target > nums[mid]) i = mid +1;
         }
         
-        return -1;
+        if(target> nums[mid]) return mid +1;
+        else return mid;
         
     }
 };

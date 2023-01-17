@@ -19,7 +19,6 @@ public:
             if(i == j){
                 
                 if(target > nums[i]) return i+1;
-                else if(target < nums[i]) return i;
             }
             
             if(target < nums[mid]) j = mid-1;

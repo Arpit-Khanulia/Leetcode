@@ -33,8 +33,7 @@ public:
         
 
         
-        for(int i=0; i< nums1.size();i++)
-            nums1[i] = ans[i];
+        nums1 = ans;
         
     }
 };

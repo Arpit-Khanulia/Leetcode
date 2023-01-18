@@ -1,57 +1,44 @@
 class Solution {
 public:
     
-    int find(int a, vector<int>&parent){
+    void dfs(int node, vector<int>&vi,vector<int>adj[]){
         
-        if(a == parent[a]) return a;
+        vi[node] = 1;
         
-        return parent[a] = find(parent[a],parent);
+        for(int i : adj[node]){
+            
+            if(!vi[i]) dfs(i,vi,adj);
+        }
         
-    }
-    
-    void unionn(int a, int b,vector<int>&parent){
-        
-        int x = find(a,parent);
-        int y = find(b,parent);
-        
-        if(x == y) return ;
-        
-        if(x<y) parent[x] = y;
-        else parent[y] = x;
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
         
         int size = isConnected.size();
-        vector<int>adj[size];
-        vector<int>parent(size);
+        vector<int>vi(size);
+        int count =0;
         
-        for(int i=0; i<size; i++)
-            parent[i] =i;
+        vector<int>adj[size];
+        
+        for(int i=0; i<size; i++){
+            for(int j =0; j<size;j++)
+            {
+                if(isConnected[i][j] ==1)
+                adj[i].push_back(j);
+                // adj[j].push_back(i);
+                
+            }
+                
+        }
         
         for(int i =0; i<size; i++){
-            for(int j =0; j<size; j++){
-                
-                if(isConnected[i][j] == 1)
-                {
-                    adj[i].push_back(j);
-                }
+            
+            if(!vi[i]){
+                count++;
+                dfs(i,vi,adj);
             }
         }
         
         
-        for(int i=0; i<size;i++)
-        for(auto j: adj[i]){
-            
-            unionn(i,j,parent);
-            
-        }
-        
-        set<int>leader;
-        for(int i=0; i<size; i++)
-            leader.insert(find(i,parent));
-        
-        
-        return leader.size();
-        
+        return count ;
     }
 };

@@ -8,8 +8,6 @@ public:
         if(sub[0] == '0' && sub.size()>1) return 0;
 
         int no = stoi(sub);
-        cout<<no<<" ";
-        cout<<endl;
         
         if(no>255) return 0;
         

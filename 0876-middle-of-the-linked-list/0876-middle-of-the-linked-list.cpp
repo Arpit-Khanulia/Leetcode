@@ -10,23 +10,22 @@
  */
 class Solution {
 public:
-    ListNode *middleNode(ListNode *head)
-    {
-        if (head->next == NULL)
-            return head;
-        ListNode *hare, *tortoise;
-        hare = head;
-        tortoise = head;
-
-        while (1)
+    ListNode* middleNode(ListNode* head) {
+        
+        ListNode * hare =head;
+        ListNode * tortoise = head;
+        
+        while(hare!= NULL &&  hare->next != NULL)
         {
-            if (hare->next == NULL)
-                return tortoise;
-            if (hare->next->next == NULL)
-                return tortoise->next;
-
+            
+            if(hare->next)
             hare = hare->next->next;
+            
+            if(tortoise->next)
             tortoise = tortoise->next;
         }
+        
+        return tortoise;
+        
     }
 };

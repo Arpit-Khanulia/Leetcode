@@ -2,7 +2,7 @@ class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
         
-        if(s2.size() < s1.size()) return 0;
+        // if(s2.size() < s1.size()) return 0;
         int i=0; 
         int j=0;
         

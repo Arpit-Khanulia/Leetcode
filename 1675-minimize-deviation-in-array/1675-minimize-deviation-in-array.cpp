@@ -2,44 +2,41 @@ class Solution {
 public:
     int minimumDeviation(vector<int>& nums) {
         
-        int ans =INT_MAX;
         priority_queue<int>q;
         int mini = INT_MAX;
-        for(int i=0; i<nums.size();i++){
+        
+        for(int i: nums){
             
-            if(nums[i] %2 != 0)
-            {
-                q.push(nums[i]*2);
-                mini = min(mini,nums[i] *2);
+            if(i %2 != 0){
+                
+                q.push(i*2);
+                mini = min(mini, i*2);
             }
-            
             else{
                 
-                q.push(nums[i]);
-                mini = min(mini,nums[i]);
+                q.push(i);
+                mini = min(mini, i);
             }
-                
+            
         }
         
         
+        int ans =INT_MAX;
         while(1){
             
             int maxi = q.top();
             q.pop();
-            ans = min(ans, maxi - mini);
+            
+            ans = min(ans, maxi -mini);
             
             if(maxi %2 != 0) break;
             
-            mini = min(mini , maxi/2);
+            mini  = min(mini, maxi/2);
+            
             q.push(maxi/2);
         }
         
-        
         return ans;
-        
         
     }
 };
-
-
-    

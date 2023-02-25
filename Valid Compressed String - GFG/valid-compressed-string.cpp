@@ -11,17 +11,18 @@ class Solution {
     int checkCompressed(string S, string T) {
         // code here
         
-        int sizes = S.size();
+        int i =0; 
+        int j =0;
+        
         int sizet = T.size();
-        int i=0;
-        int j=0;
+        int sizes = S.size();
         
         while(i<sizet){
             
-            if(isalpha(T[i])){
+            
+            if( isalpha(T[i])){
                 
-                if(S[j] == T[i]){
-                    
+                if(T[i] == S[j]){
                     i++;
                     j++;
                     continue;
@@ -30,16 +31,14 @@ class Solution {
             }
             else{
                 
-                string num = "";
-                
-                while(i<sizet and isdigit(T[i])){
+                string num ="";
+                while(i< sizet and isdigit(T[i])){
+                    
                     num = num + T[i];
                     i++;
                 }
-                
-                j = j + stoi(num);
+                j = j+ stoi(num);
             }
-            
         }
         
         if(j == sizes) return 1;

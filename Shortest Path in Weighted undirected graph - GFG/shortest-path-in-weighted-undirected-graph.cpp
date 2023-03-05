@@ -16,10 +16,14 @@ class Solution {
             adj[edges[i][1]].push_back({edges[i][0],edges[i][2]});
         }
         
+        
         vector<int>distance(n+1,1e9),parent(n+1);
         
         for( int i=1; i<=n;i++)
         parent[i] =i;
+        
+
+        
         priority_queue<pair<int,int>,vector<pair<int,int>>, greater<pair<int,int>>>q;
         
         q.push({0,1});
@@ -47,6 +51,7 @@ class Solution {
             }
             
         }
+        
         
         if(distance[n] == 1e9) return {-1};
         int node = n;

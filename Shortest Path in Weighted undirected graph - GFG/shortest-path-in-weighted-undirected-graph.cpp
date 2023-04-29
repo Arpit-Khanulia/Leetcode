@@ -6,60 +6,54 @@ using namespace std;
 class Solution {
   public:
     vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
-        
+        // Code here
         
         vector<pair<int,int>>adj[n+1];
         
-        for(int i=0; i<edges.size();i++){
+        for(int i =0;i<edges.size();i++){
             
             adj[edges[i][0]].push_back({edges[i][1],edges[i][2]});
             adj[edges[i][1]].push_back({edges[i][0],edges[i][2]});
         }
         
-        
-        vector<int>distance(n+1,1e9),parent(n+1);
-        
-        for( int i=1; i<=n;i++)
-        parent[i] =i;
-        
-
-        
-        priority_queue<pair<int,int>,vector<pair<int,int>>, greater<pair<int,int>>>q;
-        
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>q;
         q.push({0,1});
+        
+        vector<int>parent(n+1);
+        for(int i=1 ; i<=n; i++) parent[i]=i;
+        
+        vector<int>distance(n+1,1e9);
         distance[1] =0;
-        vector<int>ans;
         
         while(!q.empty()){
             
-            int d = q.top().first;
+            int dist = q.top().first;
             int node = q.top().second;
             q.pop();
             
-            for(auto i : adj[node]){
+            for(auto i: adj[node]){
                 
-                int d2 = i.second;
-                int node2 = i.first;
-                int newd = d + d2;
-                
-                if(newd < distance[node2]){
+                int d = dist + i.second;
+                if(distance[i.first] > d){
                     
-                    distance[node2] = newd;
-                    parent[node2] = node;
-                    q.push({newd,node2});
+                    distance[i.first] =d;
+                    q.push({d,i.first});
+                    parent[i.first] = node;
                 }
             }
             
+            
         }
         
+        if(distance[n] == 1e9) return {-1};        
         
-        if(distance[n] == 1e9) return {-1};
-        int node = n;
-        
-        while(parent[node] != node){
+        vector<int>ans;
+
+        int i = n;
+        while(parent[i]!=i){
             
-            ans.push_back(node);
-            node = parent[node];
+            ans.push_back(i);
+            i = parent[i];
         }
         
         ans.push_back(1);

@@ -10,46 +10,42 @@ using namespace std;
 
 class Solution {
   public:
-    int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
+int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
                      pair<int, int> destination) {
         // code here
-        
-        queue< pair< int,pair<int,int> > >q;
-        q.push({0,source});
         
         int n = grid.size();
         int m = grid[0].size();
         
-        vector<vector<int>>distance(n+1,vector<int>(m+1,1e9));
-        distance[source.first][source.second] =0;
+        queue<pair<pair<int,int>,int>>q;
+        vector<vector<int>>vi(n,vector<int>(m));
         
-        int drow[] = {1,0,-1,0};
-        int dcol[] = {0,-1,0,1};
+        q.push({source,0});
+        vi[source.first][source.second] =1;
+        
+        int drow[] ={1,0,-1,0};
+        int dcol[] ={0,-1,0,1};
         
         
         while(!q.empty()){
             
-            int dist = q.front().first;
-            int row = q.front().second.first;
-            int col = q.front().second.second;
+            int i = q.front().first.first;
+            int j = q.front().first.second;
+            int steps = q.front().second;
             q.pop();
             
-            if(row == destination.first and col == destination.second) return dist;
+            if(i == destination.first and j == destination.second) return steps;
             
-            for(int i=0; i<4;i++){
+            for(int a=0; a<4;a++){
                 
-                int r  = drow[i] + row;
-                int c =  dcol[i] + col;
+                int row = i + drow[a];
+                int col = j + dcol[a];
                 
-                if( r<n and r>=0 and c<m and c>=0 and grid[r][c] and distance[r][c] > (dist +1) ){
-                    
-                    distance[r][c] = dist +1;
-                    q.push({dist+1,{r,c}});
-                    
-                    
+                if(row>= 0 and row<n and col>=0 and col<m and !vi[row][col] and grid[row][col]){
+                    vi[row][col]= 1;
+                    q.push({{row,col},steps+1});
                 }
             }
-            
             
         }
         

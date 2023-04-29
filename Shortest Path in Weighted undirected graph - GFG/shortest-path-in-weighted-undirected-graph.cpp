@@ -20,7 +20,7 @@ class Solution {
         q.push({0,1});
         
         vector<int>parent(n+1);
-        for(int i=1 ; i<=n; i++) parent[i]=i;
+        parent[1] =1;
         
         vector<int>distance(n+1,1e9);
         distance[1] =0;

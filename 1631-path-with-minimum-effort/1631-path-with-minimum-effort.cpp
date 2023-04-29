@@ -23,7 +23,7 @@ public:
             int col = q.top().second.second;
             q.pop();
             
-            if(row == n-1 and col == m-1) return effort;
+            // if(row == n-1 and col == m-1) return effort;
             
             for(int i=0; i<4;i++){
                 
@@ -48,6 +48,6 @@ public:
             
         }
         
-        return 0;
+        return distance[n-1][m-1];
     }
 };

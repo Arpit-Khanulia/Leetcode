@@ -3,40 +3,73 @@
 using namespace std;
 
 // } Driver Code Ends
+
+
+vector<int>parent(1000);
+vector<int>size(1000,1);
+
+
 class Solution
 {
 	public:
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+	
+	int findparent(int node){
+	    
+	    if(parent[node] == node) return node;
+	    
+	    return parent[node] = findparent(parent[node]);
+	}
+	
+	void disjointunion(int a, int b){
+	    
+	    int ulpa = findparent(a);
+	    int ulpb = findparent(b);
+	    
+	    if(ulpa == ulpb) return;
+	    
+	    if(size[ulpa] < size[ulpb]){
+	        
+	        parent[ulpa] = ulpb;
+	        size[ulpb] += size[ulpa];
+	    }
+	    else{
+	        
+	        parent[ulpb] = ulpa;
+	        size[ulpa] += size[ulpb];
+	    }
+	    
+	}
+	
+	
     int spanningTree(int V, vector<vector<int>> adj[])
     {
         // code here
         
-        vector<int>vi(V);
+        for(int i=0; i<1000; i++) parent[i] =i;
         
-        priority_queue<pair<int,int>, vector<pair<int,int>>,greater<pair<int,int>>>q;
-        q.push({0,0});
+        int mstw =0;
+        vector<pair<int,pair<int,int>>>edges;
         
-        int sum =0;
+        for(int i=0;i<V;i++)
+        for(auto j: adj[i]) edges.push_back({j[1],{i,j[0]}});
         
-        while(!q.empty()){
+        sort(edges.begin(),edges.end());
+        
+        for(auto i: edges){
             
-            int w = q.top().first;
-            int node = q.top().second;
+            int a = i.second.first;
+            int b = i.second.second;
             
-            q.pop();
-            if(vi[node]) continue;
-            
-            vi[node] = 1;
-            sum+= w;
-            
-            for(auto i: adj[node]){
-                
-                if(!vi[i[0]])
-                q.push({i[1],i[0]});
+            if(findparent(a) != findparent(b)) 
+            {
+                disjointunion(a,b);
+                mstw += i.first;
             }
         }
         
-        return sum;
+        return mstw;
+        
     }
 };
 

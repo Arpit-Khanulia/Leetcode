@@ -13,22 +13,14 @@ void dfs(int node,int parent, vector<int>adj[],vector<int>&vi,vector<int>& time,
         for(int i: adj[node]){
             
             if(i == parent) continue;
-            if(!vi[i]){
-                
-                
+            
+            if(!vi[i]){           
                 dfs(i,node,adj,vi,time,low,bridges);
-                low[node] = min(low[node],low[i]);
-                if(time[node] < low[i]) bridges.push_back({node,i});
-                
+                if(time[node] < low[i]) bridges.push_back({node,i});    
             }
-            else{
-                
-                low[node] =min(low[node],low[i]);
-                
-            }
-            
-            
-            
+
+            low[node] =min(low[node],low[i]);
+
         }
         
     }

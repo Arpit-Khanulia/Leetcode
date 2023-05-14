@@ -28,9 +28,6 @@ public:
             }
         }
         
-        cout<<index<<" "<<index2<<endl;
- 
-        
         swap(nums[index],nums[index2]);
         
         reverse(nums.begin() + index+1, nums.end());

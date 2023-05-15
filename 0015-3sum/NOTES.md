@@ -1,0 +1,3 @@
+1. Bruteforce - just apply a n3 nested loop to find 3 elements whose sum is equal to 0 , store the combinations in a set so that there are no dublicates.
+2. Better - just apply a n2 nested loop and create a map that has all elements and their count, just add the 2 elements got from the first 2 loop and check in the second loop only that is there negative of that sum present in the map or not, store the answer in a set.
+3. Optimal - sort the array , fix one element using a loop that for find the next 2 elements do a two pointer approach to find the sum negative to the fixed element.

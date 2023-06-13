@@ -13,12 +13,20 @@ public:
     int remove_duplicate(int a[],int n){
         // code here
         
-        set<int>s;
-        for(int i=0 ;i<n;i++) s.insert(a[i]);
-        vector<int> ans (s.begin(),s.end());
-        for(int i =0 ;i<n;i++) a[i] = ans[i];
+        int t =0;
+        int count =0;
+        for(int i=0; i<=n;i++){
+            
+            while(a[i] == a[t]) i++;
+            
+            t++;
+            a[t] = a[i];
+            count ++;
+        }
         
-        return s.size();
+        return count;
+        
+        
     }
 };
 

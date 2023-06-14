@@ -3,12 +3,6 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        size = len(nums)
-        k = k%size
+        k = k% len(nums)
+        nums[:] = nums[-k:] + nums[:-k]
         
-        right = nums[-k:]
-        left = nums[:-k]
-        
-        
-        right.extend(left)
-        nums[:] = right

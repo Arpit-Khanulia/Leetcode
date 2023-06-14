@@ -13,7 +13,57 @@ class Solution:
         '''
         # code here 
         
-        return sorted(list( set(a) | set(b) ))
+        i =0
+        j =0
+        sizea = len(a)
+        sizeb = len(b)
+        
+        temp = []
+        
+        while(i<sizea and j<sizeb):
+            
+            if a[i] < b[j]:
+                
+                
+                if not temp or temp[-1] != a[i]:
+                    temp.append(a[i])
+                    
+                i += 1
+                
+                
+            elif b[j] < a[i]:
+                
+                if not temp or temp[-1] != b[j]:
+                    temp.append(b[j])
+                    
+                j +=1
+                
+            else:
+                
+                if not temp or temp[-1] != b[j]:
+                    temp.append(b[j])
+                
+                i += 1
+                j += 1
+                
+                
+            
+        while(i<sizea):
+            
+            if not temp or temp[-1] != a[i]:
+                temp.append(a[i])
+            
+            i+=1
+            
+        while(j<sizeb):
+            
+            if not temp or temp[-1] != b[j]:
+                temp.append(b[j])
+            
+            j+=1
+            
+        return temp
+            
 
 
 #{ 

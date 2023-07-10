@@ -56,7 +56,7 @@ public:
                      
             for(int j =0; j<col;j++){
                 
-                if(matrix[i][j] - '0' ==0) temp[j] =0;
+                if(matrix[i][j] == '0') temp[j] =0;
                 else temp[j] = int(matrix[i][j] - '0') + temp[j]; 
             }
             

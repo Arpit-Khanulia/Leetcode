@@ -1,2 +1,2 @@
 # Leetcode
-contains all leetcode DSA questions 1 practiced
+contains all leetcode DSA questions I practiced

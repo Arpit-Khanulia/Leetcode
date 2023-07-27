@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    void find(int i,vector<int>&nums,vector<vector<int>>&ans,vector<int>ds){
+    void find(int i,vector<int>&nums,vector<vector<int>>&ans,vector<int>&ds){
         
         if(i == nums.size()){
             ans.push_back(ds);
@@ -13,6 +13,7 @@ public:
         
         ds.push_back(nums[i]);
         find(i+1,nums,ans,ds);
+        ds.pop_back();
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         

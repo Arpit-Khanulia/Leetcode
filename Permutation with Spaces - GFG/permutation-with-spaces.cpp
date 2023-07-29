@@ -7,28 +7,30 @@ using namespace std;
 class Solution{
 public:
     
-    void solve(string &s, string ds, vector<string>&ans,int i){
+    void find(vector<string>&ans,string ds,string s, int i){
         
-        if(i == s.size()-1) {
+        
+        if(i == s.size()-1){
             ds.push_back(s[i]);
             ans.push_back(ds);
-            return ;
+            return;
         }
         
         ds.push_back(s[i]);
-        
-        solve(s,ds,ans,i+1);
-        
         ds.append(" ");
-        solve(s,ds,ans,i+1);
+        
+        find(ans,ds,s,i+1);
+        ds.pop_back();
+        find(ans,ds,s,i+1);
+        
     }
+    
     vector<string> permutation(string S){
         // Code Here
         
-        string ds;
         vector<string>ans;
-        solve(S,ds,ans,0);
-        sort(ans.begin(),ans.end());
+        string ds;
+        find(ans,ds,S,0);
         return ans;
     }
 };

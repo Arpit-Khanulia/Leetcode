@@ -1,7 +1,7 @@
 class Solution {
 public:
 //  0<3 (, 1<3 ( , 2<3(, 0 <3 ), 1<3 ) , 2<3 ),      
-    void find(vector<string>&ans,string ds, int n, int open , int close){
+    void find(vector<string>&ans,string &ds, int n, int open , int close){
         
         
         if(open ==n and  close == n){

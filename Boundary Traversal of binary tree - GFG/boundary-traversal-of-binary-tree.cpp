@@ -147,25 +147,30 @@ public:
     
     vector <int> boundary(Node *root)
     {
-        vector<int>ans;
-        vector<int>ds;
-        if(root == NULL)
-        return ans;
+        
+        if(root == NULL) return {};
         //Your code here
-        ans.push_back(root->data);
         
-        if(root->left == NULL && root->right ==NULL)
-        return ans;
-        findleft(ans,root->left);
-        dfs(root,ans);
-        findright(ds,root->right);
-        
-        for(int i =ds.size()-1;i>=0;i--)
-        ans.push_back(ds[i]);
+        vector<int>left;
+        vector<int>right;
         
         
+        left.push_back(root->data);
+        if(root->left == NULL and root->right == NULL) return left;
+        findleft(left,root->left);
         
-        return ans;
+        
+        findright(right,root->right);
+        reverse(right.begin(),right.end());
+        
+        vector<int>bottom;
+        dfs(root,bottom);
+
+        
+        left.insert(left.end(),bottom.begin(),bottom.end());
+        left.insert(left.end(),right.begin(),right.end());
+        
+        return left;
     }
 };
 

@@ -68,8 +68,8 @@ void find(Node * root, int x, int & floorvalue){
     
     if(root->data < x and root->data > floorvalue) floorvalue = root->data;
     
-    find(root->left,x,floorvalue);
-    find(root->right,x,floorvalue);
+    if(x<root->data) find(root->left,x,floorvalue);
+    if(x>root->data) find(root->right,x,floorvalue);
 }
 int floor(Node* root, int x) {
     // Code here

@@ -128,10 +128,12 @@ Node* insert(Node* root, int Key) {
             
             Node * temp = new Node(Key);
             root->left = temp;
+            return ans;
         }
         else if(root->right == NULL and Key > root->data){
             Node * temp = new Node(Key);
             root->right = temp;
+            return ans;
         }
         
         if(Key<root->data) root = root->left;

@@ -100,25 +100,26 @@ int main() {
 
 // Function to return the ceil of given number in BST.
 
-void find(Node * root, int input, int & ceilvalue){
+void find(Node *root, int target ,int & ceilvalue){
     
-    if(root == NULL) return;
+    if(root == NULL) return ;
     
-    if(root->data == input){
+    if(root->data == target) {
         ceilvalue = root->data;
-        return ;
+        return;
     }
     
-    if(root->data > input ) ceilvalue = root->data;
+    if(root->data > target) ceilvalue = root->data;
     
-    if(input< root->data) find(root->left,input,ceilvalue);
-    else find(root->right,input,ceilvalue);
+    if(target < root->data) find(root->left,target,ceilvalue);
+    else find(root->right,target,ceilvalue);
 }
 int findCeil(Node* root, int input) {
     if (root == NULL) return -1;
-
-    // Your code here
-    int ceilvalue = -1;
+    
+    int ceilvalue =-1;
     find(root,input,ceilvalue);
     return ceilvalue;
+
+    // Your code here
 }

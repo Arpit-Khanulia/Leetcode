@@ -12,22 +12,20 @@ class Solution
   {
       // code here
       
-      vector<int>ans(N);
+      vector<int>weight(N);
       
-      for(int i=0 ;i<N;i++){
+      for(int i=0; i<N;i++){
           
           if(Edge[i] == -1) continue;
-          ans[Edge[i]] += i;
+          weight[Edge[i]] += i;
       }
       
-      int maxi = INT_MIN;
-      int index = -1;
-      
+      int maxi = 0;
+      int index =-1;
       for(int i=0 ;i<N;i++){
           
-          if(maxi <= ans[i]){
-              
-              maxi = ans[i];
+          if(maxi<=weight[i]){
+              maxi = weight[i];
               index = i;
           }
           

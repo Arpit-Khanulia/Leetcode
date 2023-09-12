@@ -22,13 +22,10 @@ public:
         reverse(ans.begin(),ans.end());
         string finalans;
         
-        for(auto i: ans) cout<<i;
-        cout<<endl;
         for(auto i:ans){
             finalans += i;
             finalans +=' ';
         }
-        
         
         finalans.pop_back();
         

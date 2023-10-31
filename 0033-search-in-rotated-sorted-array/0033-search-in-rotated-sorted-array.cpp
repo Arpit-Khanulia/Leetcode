@@ -40,8 +40,6 @@ public:
     int search(vector<int>& nums, int target) {
         
         int min = findmin(nums);
-        cout<<nums[min]<<endl;
-        
         int left = binarysearch(nums,target, 0,min-1);
         int right = binarysearch(nums,target,min,nums.size()-1);
         

@@ -6,14 +6,11 @@ public:
         
         int n  = grid.size();
         int m  = grid[0].size();
-
-        cout<<"    this is outside ->"<<r<<"-"<<c<<","<<count<<endl;
         
         if(grid[r][c] == 2 and count==-1) {
             ans++;
             return;
         }
-        
         
         int drow[] = {1,0,-1,0};
         int dcol[] = {0,-1,0,1};
@@ -25,8 +22,6 @@ public:
             int col = c + dcol[i];
             
             if(row>=0 and row< n and col>=0 and col< m and !vi[row][col] and grid[row][col] != -1){
-                
-                // cout<<"    this is inside ->"<<row<<" "<<col<<endl;
                 vi[row][col] =1;
                 solve(grid,vi,row,col,ans,count-1);
                 vi[row][col] = 0;

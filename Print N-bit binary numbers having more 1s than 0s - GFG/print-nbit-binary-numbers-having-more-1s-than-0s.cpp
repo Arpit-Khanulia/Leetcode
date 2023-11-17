@@ -8,36 +8,36 @@ using namespace std;
 class Solution{
 public:	
 
-    void find(vector<string>&ans,string &ds, int n , int zeros,int ones){
+    void find(int one, int zero , string& ds,  vector<string>&ans,int n){
         
-        
-        if(ds.size() == n){
-            ans.push_back(ds);
-            return ;
-        }
-        
-        if(ones>= zeros){
+        if(one + zero == n){
             
-            ds.push_back('1');
-            find(ans,ds,n,zeros,ones+1);
-            ds.pop_back();
-            
+            if(one>=zero) ans.push_back(ds);
+            return;
         }
         
         
-        if(zeros <  n/2){
+        
+        ds.push_back('1');
+        find(one+1,zero,ds,ans,n);
+        ds.pop_back();
+        
+        if(zero< one){
             
             ds.push_back('0');
-            find(ans,ds,n,zeros+1,ones);
+            find(one,zero+1,ds,ans,n);
             ds.pop_back();
         }
+        
     }
 	vector<string> NBitBinary(int N)
 	{
 	    // Your code goes here
-	    vector<string>ans;
+	    
 	    string ds;
-	    find(ans,ds,N,0,0);
+	    vector<string>ans;
+	    ds.push_back('1');
+	    find(1, 0, ds, ans,N);
 	    return ans;
 	}
 };

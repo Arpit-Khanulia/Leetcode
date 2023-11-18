@@ -12,24 +12,21 @@
 class Solution {
 public:
     
-    int find(TreeNode* root,int &maxi){
+    int find(TreeNode*root,int &maxi){
         
         if(root == NULL) return 0;
         
-        int left = find(root->left,maxi);
-        int right = find(root->right,maxi);
+        int a= find(root->left,maxi);
+        int b= find(root->right,maxi);
         
-        int d = left + right;
+        maxi = max(a+b+1,maxi);
         
-        maxi = max(maxi,d);
-        return max(left,right) +1;
+        return max(a,b)+1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
         
-        if(root == NULL) return NULL;
-        int maxi = INT_MIN;
-        
+        int maxi = 0;
         find(root,maxi);
-        return maxi;
+        return maxi-1;
     }
 };
